@@ -1,6 +1,6 @@
-# The Aloy Project
+# The Aloy Project   [![Build Status](https://travis-ci.com/YanVkhv/TheAloyProject.svg?branch=master)](https://travis-ci.com/YanVkhv/TheAloyProject)
 
-[Github](https://github.com/YanVkhv)
+[Github](https://github.com/YanVkhv/TheAloyProject)
 
 ## Tech stack
 
