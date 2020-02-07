@@ -39,7 +39,8 @@ ARG JAR_FILE=war/target/war-1.2.0-SNAPSHOT.jar
 COPY ${JAR_FILE} TheAloyProject.jar
 
 # Run the jar file
-ENTRYPOINT ["java","-jar","/TheAloyProject.jar"]
+# ENTRYPOINT ["java","-jar","/TheAloyProject.jar"]
+CMD ["sh", "-c", "java -Dserver.port=$PORT -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8 -jar /TheAloyProject.jar"]
 
 # Replace ENTRYPOINT for the command below when pushing (& releasing) to Heroku
 # CMD ["sh", "-c", "java -Dserver.port=$PORT -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8 -jar /TheAloyProject.jar"]
