@@ -33,7 +33,7 @@ FROM openjdk:11-jre-slim
 EXPOSE 9000
 
 # Store the application's jar file in a temporary argument
-ARG JAR_FILE=war/target/war-1.1.0-SNAPSHOT.jar
+ARG JAR_FILE=war/target/war-1.2.0-SNAPSHOT.jar
 
 # Copy the application's jar (using the temporary argument) to the docker container (in the root)
 COPY ${JAR_FILE} TheAloyProject.jar
