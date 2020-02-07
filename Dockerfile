@@ -2,12 +2,12 @@
 # ============================ HOW TO USE ============================
 # ====================================================================
 # 1. Build an image from this Dockerfile using the following command:
-#       >_ docker build -t com.YanVkhv/TheAloyProject .
+#       >_ docker build -t com.yanvkhv/the-aloy-project .
 #          (where . stands for the current directory)
-#          (where we tag (-t) our image giving it the unique name com.YanVkhv/TheAloyProject (with version 'latest'))
+#          (where we tag (-t) our image giving it the unique name com.yanvkhv/the-aloy-project (with version 'latest'))
 #               https://docs.docker.com/engine/reference/commandline/build/#tag-an-image--t
 # 2. Run one (or more) docker container(s) from the created image, using command:
-#       >_ docker run -d -p 9500:9000 com.YanVkhv/TheAloyProject
+#       >_ docker run -d -p 9500:9000 com.yanvkhv/the-aloy-project
 #          (option -d will run the container in detatched mode, thus you can reuse your terminal)
 #               https://docs.docker.com/engine/reference/run/#detached--d
 #          (option -p 9500:9000 will map internal port 9000 on which TheAloyProject runs in the container to the outside docker host port 9500)
@@ -18,11 +18,11 @@
 # 6. Run the following commands in order:
 #       >_ heroku login
 #       >_ heroku container:login
-#       >_ heroku container:push web -a order-jpa
-#          (where -a order-jpa specifies the name of the app on heroku)
+#       >_ heroku container:push web -a the-aloy-project
+#          (where -a the-aloy-project specifies the name of the app on heroku)
 #          (where web is the process-type)
-#       >_ heroku container:release web -a order-jpa
-#       Runs on: https://order-jpa.herokuapp.com/swagger-ui.html
+#       >_ heroku container:release web -a the-aloy-project
+#       Runs on: https://the-aloy-project.herokuapp.com/swagger-ui.html
 
 # Start with a base image containing Java runtime
 FROM openjdk:11-jre-slim

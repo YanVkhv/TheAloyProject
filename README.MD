@@ -8,6 +8,8 @@
 - H2 in-memory database
 - JDK 13
 - Swagger
+- Docker
+- Heroku
 - ...
 
 ## Usage
