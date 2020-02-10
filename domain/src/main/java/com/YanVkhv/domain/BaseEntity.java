@@ -1,20 +1,19 @@
 package com.YanVkhv.domain;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.UUID;
 
 @MappedSuperclass
+@NoArgsConstructor
 public abstract class BaseEntity {
 
     @Id
     @Column(name = "ID")
     private String id;
-
-    protected BaseEntity() {
-        // JPA requires a no-arg constructor
-    }
 
     protected BaseEntity(UUID id) {
         if (id != null) {

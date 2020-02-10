@@ -4,6 +4,6 @@ import com.YanVkhv.gui.components.NavigationBar;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 
-@Route(value = "DepositCalendar", layout = NavigationBar.class)
+@Route(value = "deposit_calendar", layout = NavigationBar.class)
 public class DepositCalendarView extends Div {
 }
