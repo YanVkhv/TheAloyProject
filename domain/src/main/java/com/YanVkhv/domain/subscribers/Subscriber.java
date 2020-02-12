@@ -2,13 +2,11 @@ package com.YanVkhv.domain.subscribers;
 
 import com.YanVkhv.domain.BaseEntity;
 import com.YanVkhv.domain.genders.Gender;
-import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Builder
 @Getter
 @Entity
 @Table(name = "SUBSCRIBER")
@@ -48,13 +46,6 @@ public class Subscriber extends BaseEntity {
     @Column(name = "ACV_UUID")
     private final String acvUuid;
 
-    @Column(name = "PHONE_NUMBER")
-    private final String phoneNumber;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "SUBSCRIBER_TYPE_ID")
-    private final SubscriberType subscriberType;
-
     protected Subscriber() {
         this.firstname = null;
         this.lastname = null;
@@ -67,7 +58,5 @@ public class Subscriber extends BaseEntity {
         this.mNumber = null;
         this.isAcvMember = false;
         this.acvUuid = null;
-        this.phoneNumber = null;
-        this.subscriberType = null;
     }
 }

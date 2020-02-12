@@ -1,7 +1,6 @@
 package com.YanVkhv.domain.subscriptions;
 
 import com.YanVkhv.domain.BaseEntity;
-import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.Column;
@@ -10,7 +9,6 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Builder
 @Getter
 @Entity
 @Table(name = "SUBSCRIPTION")
