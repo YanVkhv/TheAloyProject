@@ -14,6 +14,9 @@ import java.util.UUID;
 @Table(name = "SUBSCRIPTION")
 public class Subscription extends BaseEntity {
 
+    @Column(name = "SUBSCRIBER_ID")
+    private final UUID subscriberId;
+
     @Column(name = "SUBSCRIPTION_NUMBER")
     private final String subscriptionNumber;
 
@@ -28,9 +31,6 @@ public class Subscription extends BaseEntity {
 
     @Column(name = "SEND_DIGITAL_IND")
     private final boolean sendDigital;
-
-    @Column(name = "SUBSCRIBER_ID")
-    private final UUID subscriberId;
 
     @Column(name = "VALIDATION_ERROR_ID")
     private final UUID validationErrorId;
@@ -48,12 +48,12 @@ public class Subscription extends BaseEntity {
     private final boolean isPublished;
 
     protected Subscription() {
+        this.subscriberId = null;
         this.subscriptionNumber = null;
         this.startDate = null;
         this.endDate = null;
         this.sendPhysical = false;
         this.sendDigital = false;
-        this.subscriberId = null;
         this.validationErrorId = null;
         this.magazineId = null;
         this.numberOfCopies = null;
