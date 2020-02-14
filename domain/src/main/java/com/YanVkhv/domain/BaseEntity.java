@@ -1,39 +1,24 @@
 package com.YanVkhv.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import java.util.UUID;
+import javax.persistence.*;
 
+@Getter
 @MappedSuperclass
 @NoArgsConstructor
 public abstract class BaseEntity {
 
     @Id
-    @Column(name = "ID")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
-    protected BaseEntity(UUID id) {
+    protected BaseEntity(Long id) {
         if (id != null) {
-            this.id = id.toString();
+            this.id = id;
         }
-    }
-
-    public void generateId() throws IllegalStateException {
-        if (id != null) {
-            throw new IllegalStateException("Generating an ID for an entity that already has " +
-                    "an ID (" + id + ") is not allowed.");
-        }
-        id = UUID.randomUUID().toString();
-    }
-
-    public UUID getId() {
-        if (id == null) {
-            return null;
-        }
-        return UUID.fromString(id);
     }
 
 }

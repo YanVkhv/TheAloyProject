@@ -12,6 +12,9 @@ import java.time.LocalDate;
 @Table(name = "SUBSCRIBER")
 public class Subscriber extends BaseEntity {
 
+    @Column(name = "SUBSCRIPTION_ID")
+    private final Long subscriptionId;
+
     @Column(name = "FIRSTNAME")
     private final String firstname;
 
@@ -31,9 +34,6 @@ public class Subscriber extends BaseEntity {
     @Column(name = "NATIONAL_REGISTER_NUMBER")
     private final String nationalRegisterNumber;
 
-    @Column(name = "FEDERATION")
-    private final String federation;
-
     @Column(name = "CM_MEMBER_IND")
     private final boolean isCmMember;
 
@@ -47,13 +47,13 @@ public class Subscriber extends BaseEntity {
     private final String acvUuid;
 
     protected Subscriber() {
+        this.subscriptionId = null;
         this.firstname = null;
         this.lastname = null;
         this.birthdate = null;
         this.deathdate = null;
         this.gender = null;
         this.nationalRegisterNumber = null;
-        this.federation = null;
         this.isCmMember = false;
         this.mNumber = null;
         this.isAcvMember = false;

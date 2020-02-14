@@ -1,11 +1,11 @@
-package com.YanVkhv.domain.genders;
+package com.YanVkhv.domain.addresses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum Gender {
-    MALE,
-    FEMALE
+public enum AddressType {
+    LCM,
+    SUMO
 }
