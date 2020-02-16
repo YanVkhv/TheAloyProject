@@ -8,7 +8,7 @@ import com.vaadin.flow.router.Route;
 
 @Route(value = "rejections", layout = MainView.class)
 @PageTitle("Rejections")
-@CssImport("styles/views/rejections/rejections-view.css")
+@CssImport("./styles/views/rejections/rejections-view.css")
 public class RejectionsView extends Div {
 
     public RejectionsView() {

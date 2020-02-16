@@ -23,7 +23,7 @@ import javax.inject.Inject;
 @Route(value = "overview", layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
 @PageTitle("Overview")
-@CssImport("styles/views/overview/overview-view.css")
+@CssImport("./styles/views/overview/overview-view.css")
 public class OverviewView extends Div implements AfterNavigationObserver {
 
     @Inject
@@ -64,9 +64,7 @@ public class OverviewView extends Div implements AfterNavigationObserver {
         // the grid valueChangeEvent will clear the form too
         cancel.addClickListener(e -> subscribers.asSingleSelect().clear());
 
-        save.addClickListener(e -> {
-            Notification.show("Not implemented");
-        });
+        save.addClickListener(e -> Notification.show("Not implemented"));
 
         SplitLayout splitLayout = new SplitLayout();
         splitLayout.setSizeFull();

@@ -18,7 +18,7 @@ import javax.inject.Inject;
 
 @Route(value = "deposit-calendar", layout = MainView.class)
 @PageTitle("Deposit Calendar")
-@CssImport("styles/views/calendar/calendar-view.css")
+@CssImport("./styles/views/calendar/calendar-view.css")
 public class DepositCalendarView extends Div implements AfterNavigationObserver {
 
     @Inject
