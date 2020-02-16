@@ -4,7 +4,6 @@ import com.YanVkhv.domain.Repository;
 
 import javax.inject.Named;
 import java.util.List;
-import java.util.UUID;
 
 @Named
 public class SubscriberRepository extends Repository<Subscriber> {
@@ -16,10 +15,10 @@ public class SubscriberRepository extends Repository<Subscriber> {
     }
 
     @Override
-    public Subscriber get(UUID entityId) {
+    public Subscriber get(Long entityId) {
         return getEntityManager()
                 .createQuery("FROM Subscriber WHERE id = :id", Subscriber.class)
-                .setParameter("id", entityId.toString())
+                .setParameter("id", entityId)
                 .getSingleResult();
     }
 }

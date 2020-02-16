@@ -3,7 +3,6 @@ package com.YanVkhv.domain;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.UUID;
 
 public abstract class Repository<T extends BaseEntity> {
 
@@ -15,7 +14,6 @@ public abstract class Repository<T extends BaseEntity> {
     }
 
     public T save(T entity) {
-        entity.generateId();
         entityManager.persist(entity);
         return entity;
     }
@@ -27,6 +25,6 @@ public abstract class Repository<T extends BaseEntity> {
 
     public abstract List<T> getAll();
 
-    public abstract T get(UUID entityId);
+    public abstract T get(Long entityId);
 
 }
