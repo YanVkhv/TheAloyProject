@@ -15,13 +15,7 @@ public class SubscriberRepositoryIntegrationTest extends IntegrationTest {
 
     @Test
     void save() {
-        Subscriber subscriberToSave = Subscriber.builder()
-                .firstname("Yannick")
-                .lastname("Vankerkhove")
-                .birthdate(LocalDate.of(1990, 3, 20))
-                .gender(Gender.MALE)
-                .nationalRegisterNumber("123456789")
-                .build();
+        Subscriber subscriberToSave = createASubscriber();
 
         Subscriber savedSubscriber = repository.save(subscriberToSave);
 
@@ -32,13 +26,7 @@ public class SubscriberRepositoryIntegrationTest extends IntegrationTest {
 
     @Test
     void get() {
-        Subscriber savedSubscriber = repository.save(Subscriber.builder()
-                .firstname("Yannick")
-                .lastname("Vankerkhove")
-                .birthdate(LocalDate.of(1990, 3, 20))
-                .gender(Gender.MALE)
-                .nationalRegisterNumber("123456789")
-                .build());
+        Subscriber savedSubscriber = repository.save(createASubscriber());
 
         Subscriber actualSubscriber = repository.get(savedSubscriber.getId());
 
@@ -48,14 +36,9 @@ public class SubscriberRepositoryIntegrationTest extends IntegrationTest {
 
     @Test
     void getAll() {
-        Subscriber subscriberOne = repository.save(Subscriber.builder()
-                .firstname("Yannick")
-                .lastname("Vankerkhove")
-                .birthdate(LocalDate.of(1990, 3, 20))
-                .gender(Gender.MALE)
-                .nationalRegisterNumber("123456789")
-                .build());
+        Subscriber subscriberOne = repository.save(createASubscriber());
         Subscriber subscriberTwo = repository.save(Subscriber.builder()
+                .addressId((long) 2)
                 .firstname("Sarah")
                 .lastname("Hsieh")
                 .birthdate(LocalDate.of(1992, 10, 1))
@@ -67,5 +50,16 @@ public class SubscriberRepositoryIntegrationTest extends IntegrationTest {
 
         Assertions.assertThat(allSubscribers)
                 .containsExactlyInAnyOrder(subscriberOne, subscriberTwo);
+    }
+
+    private Subscriber createASubscriber() {
+        return Subscriber.builder()
+                .addressId((long) 1)
+                .firstname("Yannick")
+                .lastname("Vankerkhove")
+                .birthdate(LocalDate.of(1990, 3, 20))
+                .gender(Gender.MALE)
+                .nationalRegisterNumber("123456789")
+                .build();
     }
 }

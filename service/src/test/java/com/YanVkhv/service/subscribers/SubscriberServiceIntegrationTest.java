@@ -21,13 +21,7 @@ public class SubscriberServiceIntegrationTest extends IntegrationTest {
 
     @Test
     void createSubscriber() {
-        Subscriber subscriberToCreate = Subscriber.builder()
-                .firstname("Yannick")
-                .lastname("Vankerkhove")
-                .birthdate(LocalDate.of(1990, 3, 20))
-                .gender(Gender.MALE)
-                .nationalRegisterNumber("123456789")
-                .build();
+        Subscriber subscriberToCreate = createASubscriber();
 
         Subscriber createdSubscriber = subscriberService.createSubscriber(subscriberToCreate);
 
@@ -38,16 +32,11 @@ public class SubscriberServiceIntegrationTest extends IntegrationTest {
 
     @Test
     void updateSubscriber() {
-        Subscriber createdSubscriber = subscriberService.createSubscriber(Subscriber.builder()
-                .firstname("Yannick")
-                .lastname("Vankerkhove")
-                .birthdate(LocalDate.of(1990, 3, 20))
-                .gender(Gender.MALE)
-                .nationalRegisterNumber("123456789")
-                .build());
+        Subscriber createdSubscriber = subscriberService.createSubscriber(createASubscriber());
 
         Subscriber updatedSubscriber = subscriberService.updateSubscriber(createdSubscriber.getId(), Subscriber.builder()
                 .id(createdSubscriber.getId())
+                .addressId((long) 1)
                 .firstname("Yan")
                 .lastname("Vkhv")
                 .birthdate(LocalDate.of(1990, 3, 20))
@@ -62,14 +51,9 @@ public class SubscriberServiceIntegrationTest extends IntegrationTest {
 
     @Test
     void getAllSubscribers() {
-        Subscriber subscriber1 = subscriberService.createSubscriber(Subscriber.builder()
-                .firstname("Yannick")
-                .lastname("Vankerkhove")
-                .birthdate(LocalDate.of(1990, 3, 20))
-                .gender(Gender.MALE)
-                .nationalRegisterNumber("123456789")
-                .build());
+        Subscriber subscriber1 = subscriberService.createSubscriber(createASubscriber());
         Subscriber subscriber2 = subscriberService.createSubscriber(Subscriber.builder()
+                .addressId((long) 2)
                 .firstname("Sarah")
                 .lastname("Hsieh")
                 .birthdate(LocalDate.of(1992, 10, 1))
@@ -77,6 +61,7 @@ public class SubscriberServiceIntegrationTest extends IntegrationTest {
                 .nationalRegisterNumber("987654321")
                 .build());
         Subscriber subscriber3 = subscriberService.createSubscriber(Subscriber.builder()
+                .addressId((long) 3)
                 .firstname("Jane")
                 .lastname("Doe")
                 .birthdate(LocalDate.of(1850, 6, 23))
@@ -91,14 +76,9 @@ public class SubscriberServiceIntegrationTest extends IntegrationTest {
 
     @Test
     void getSubscriber() {
-        subscriberService.createSubscriber(Subscriber.builder()
-                .firstname("Yannick")
-                .lastname("Vankerkhove")
-                .birthdate(LocalDate.of(1990, 3, 20))
-                .gender(Gender.MALE)
-                .nationalRegisterNumber("123456789")
-                .build());
+        subscriberService.createSubscriber(createASubscriber());
         Subscriber subscriberToFind = subscriberService.createSubscriber(Subscriber.builder()
+                .addressId((long) 2)
                 .firstname("Sarah")
                 .lastname("Hsieh")
                 .birthdate(LocalDate.of(1992, 10, 1))
@@ -106,6 +86,7 @@ public class SubscriberServiceIntegrationTest extends IntegrationTest {
                 .nationalRegisterNumber("987654321")
                 .build());
         subscriberService.createSubscriber(Subscriber.builder()
+                .addressId((long) 3)
                 .firstname("Jane")
                 .lastname("Doe")
                 .birthdate(LocalDate.of(1850, 6, 23))
@@ -116,5 +97,16 @@ public class SubscriberServiceIntegrationTest extends IntegrationTest {
         Subscriber foundSubscriber = subscriberService.getSubscriber(subscriberToFind.getId());
 
         assertThat(foundSubscriber).isEqualToComparingFieldByField(subscriberToFind);
+    }
+
+    private Subscriber createASubscriber() {
+        return Subscriber.builder()
+                .addressId((long) 1)
+                .firstname("Yannick")
+                .lastname("Vankerkhove")
+                .birthdate(LocalDate.of(1990, 3, 20))
+                .gender(Gender.MALE)
+                .nationalRegisterNumber("123456789")
+                .build();
     }
 }

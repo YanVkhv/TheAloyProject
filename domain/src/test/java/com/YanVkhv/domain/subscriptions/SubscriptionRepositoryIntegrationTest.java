@@ -13,13 +13,7 @@ public class SubscriptionRepositoryIntegrationTest extends IntegrationTest {
 
     @Test
     void save() {
-        Subscription subscriptionToSave = Subscription.builder()
-                .subscriptionNumber("123456789")
-                .magazine(Magazine.LEEF)
-                .numberOfCopies("1")
-                .editionId((long) 1)
-                .isPublished(false)
-                .build();
+        Subscription subscriptionToSave = createASubscription();
 
         Subscription savedSubscription = repository.save(subscriptionToSave);
 
@@ -30,13 +24,7 @@ public class SubscriptionRepositoryIntegrationTest extends IntegrationTest {
 
     @Test
     void get() {
-        Subscription savedSubscription = repository.save(Subscription.builder()
-                .subscriptionNumber("123456789")
-                .magazine(Magazine.LEEF)
-                .numberOfCopies("1")
-                .editionId((long) 1)
-                .isPublished(false)
-                .build());
+        Subscription savedSubscription = repository.save(createASubscription());
 
         Subscription actualSubscription = repository.get(savedSubscription.getId());
 
@@ -46,13 +34,7 @@ public class SubscriptionRepositoryIntegrationTest extends IntegrationTest {
 
     @Test
     void getAll() {
-        Subscription subscriptionOne = repository.save(Subscription.builder()
-                .subscriptionNumber("123456789")
-                .magazine(Magazine.LEEF)
-                .numberOfCopies("1")
-                .editionId((long) 1)
-                .isPublished(false)
-                .build());
+        Subscription subscriptionOne = repository.save(createASubscription());
         Subscription subscriptionTwo = repository.save(Subscription.builder()
                 .subscriptionNumber("987654321")
                 .magazine(Magazine.VISIE)
@@ -65,5 +47,15 @@ public class SubscriptionRepositoryIntegrationTest extends IntegrationTest {
 
         Assertions.assertThat(allSubscriptions)
                 .containsExactlyInAnyOrder(subscriptionOne, subscriptionTwo);
+    }
+
+    private Subscription createASubscription() {
+        return Subscription.builder()
+                .subscriptionNumber("123456789")
+                .magazine(Magazine.LEEF)
+                .numberOfCopies("1")
+                .editionId((long) 1)
+                .isPublished(false)
+                .build();
     }
 }

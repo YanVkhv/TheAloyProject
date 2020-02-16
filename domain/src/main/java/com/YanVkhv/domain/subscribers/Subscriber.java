@@ -25,6 +25,9 @@ public class Subscriber {
     @Column(name = "SUBSCRIPTION_ID")
     private Long subscriptionId;
 
+    @Column(name = "ADDRESS_ID", nullable = false)
+    private Long addressId;
+
     @Column(name = "FIRSTNAME", nullable = false)
     private String firstname;
 

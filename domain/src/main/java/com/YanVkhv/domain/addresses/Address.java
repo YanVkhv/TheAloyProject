@@ -20,9 +20,6 @@ public class Address {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "SUBSCRIBER_ID", nullable = false)
-    private Long subscriberId;
-
     @Column(name = "STREET", nullable = false)
     private String street;
 

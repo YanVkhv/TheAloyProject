@@ -20,13 +20,7 @@ public class SubscriptionServiceIntegrationTest extends IntegrationTest {
 
     @Test
     void createSubscription() {
-        Subscription subscriptionToCreate = Subscription.builder()
-                .subscriptionNumber("123456789")
-                .magazine(Magazine.LEEF)
-                .numberOfCopies("1")
-                .editionId((long) 1)
-                .isPublished(false)
-                .build();
+        Subscription subscriptionToCreate = createASubscription();
 
         Subscription createdSubscription = subscriptionService.createSubscription(subscriptionToCreate);
 
@@ -37,13 +31,7 @@ public class SubscriptionServiceIntegrationTest extends IntegrationTest {
 
     @Test
     void updateSubscription() {
-        Subscription createdSubscription = subscriptionService.createSubscription(Subscription.builder()
-                .subscriptionNumber("123456789")
-                .magazine(Magazine.LEEF)
-                .numberOfCopies("1")
-                .editionId((long) 1)
-                .isPublished(false)
-                .build());
+        Subscription createdSubscription = subscriptionService.createSubscription(createASubscription());
 
         Subscription updatedSubscription = subscriptionService.updateSubscription(createdSubscription.getId(), Subscription.builder()
                 .id(createdSubscription.getId())
@@ -61,13 +49,7 @@ public class SubscriptionServiceIntegrationTest extends IntegrationTest {
 
     @Test
     void getAllSubscriptions() {
-        Subscription subscription1 = subscriptionService.createSubscription(Subscription.builder()
-                .subscriptionNumber("123456789")
-                .magazine(Magazine.LEEF)
-                .numberOfCopies("1")
-                .editionId((long) 1)
-                .isPublished(false)
-                .build());
+        Subscription subscription1 = subscriptionService.createSubscription(createASubscription());
         Subscription subscription2 = subscriptionService.createSubscription(Subscription.builder()
                 .subscriptionNumber("987654321")
                 .magazine(Magazine.VISIE)
@@ -90,13 +72,7 @@ public class SubscriptionServiceIntegrationTest extends IntegrationTest {
 
     @Test
     void getSubscription() {
-        subscriptionService.createSubscription(Subscription.builder()
-                .subscriptionNumber("123456789")
-                .magazine(Magazine.LEEF)
-                .numberOfCopies("1")
-                .editionId((long) 1)
-                .isPublished(false)
-                .build());
+        subscriptionService.createSubscription(createASubscription());
         Subscription subscriptionToFind = subscriptionService.createSubscription(Subscription.builder()
                 .subscriptionNumber("987654321")
                 .magazine(Magazine.VISIE)
@@ -115,5 +91,15 @@ public class SubscriptionServiceIntegrationTest extends IntegrationTest {
         Subscription foundSubscription = subscriptionService.getSubscription(subscriptionToFind.getId());
 
         assertThat(foundSubscription).isEqualToComparingFieldByField(subscriptionToFind);
+    }
+
+    private Subscription createASubscription() {
+        return Subscription.builder()
+                .subscriptionNumber("123456789")
+                .magazine(Magazine.LEEF)
+                .numberOfCopies("1")
+                .editionId((long) 1)
+                .isPublished(false)
+                .build();
     }
 }
