@@ -55,6 +55,14 @@ You can access the H2 Database by surfing to:
  - `http://localhost:9000/h2-console`
  
  As the JDBC-url, enter `jdbc:h2:mem:testdb`
+ 
+## Technical Information
+Reasons why I didn't use DTO's:  
+- Small project team.
+- Team sits in one location.
+- No separate teams for GUI and backend.
+- Project scope is limited and I know more or less what the product will look like in the end.
+- Limited I18N requirements.
 
-## Some example REST Endpoints
-TBD
+## REST Endpoints
+Go to http://localhost:9000/swagger-ui.html#/ while application is running.
