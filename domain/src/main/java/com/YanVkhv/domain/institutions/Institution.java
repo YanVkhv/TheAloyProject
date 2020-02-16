@@ -1,25 +1,29 @@
 package com.YanVkhv.domain.institutions;
 
-import com.YanVkhv.domain.BaseEntity;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Getter
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "INSTITUTION")
-public class Institution extends BaseEntity {
+public class Institution {
 
-    @Column(name = "SUBSCRIPTION_ID")
-    private final Long subscriptionId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
-    @Column(name = "NAME")
-    private final String name;
+    @Column(name = "SUBSCRIPTION_ID", nullable = false)
+    private Long subscriptionId;
 
-    protected Institution() {
-        this.subscriptionId = null;
-        this.name = null;
-    }
+    @Column(name = "NAME", nullable = false)
+    private String name;
+
 }

@@ -1,57 +1,55 @@
 package com.YanVkhv.domain.subscriptions;
 
-import com.YanVkhv.domain.BaseEntity;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Getter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "SUBSCRIPTION")
-public class Subscription extends BaseEntity {
+public class Subscription {
 
-    @Column(name = "SUBSCRIPTION_NUMBER")
-    private final String subscriptionNumber;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
+
+    @Column(name = "SUBSCRIPTION_NUMBER", updatable = false, nullable = false)
+    private String subscriptionNumber;
 
     @Column(name = "START_DATE")
-    private final LocalDate startDate;
+    private LocalDate startDate = null;
 
     @Column(name = "END_DATE")
-    private final LocalDate endDate;
+    private LocalDate endDate = null;
 
-    @Column(name = "SEND_PHYSICAL_IND")
-    private final boolean sendPhysical;
+    @Column(name = "SEND_PHYSICAL_IND", nullable = false)
+    private boolean sendPhysical = false;
 
-    @Column(name = "SEND_DIGITAL_IND")
-    private final boolean sendDigital;
+    @Column(name = "SEND_DIGITAL_IND", nullable = false)
+    private boolean sendDigital = false;
 
     @Column(name = "VALIDATION_ERROR_ID")
-    private final Long validationErrorId;
+    private Long validationErrorId = null;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "MAGAZINE")
-    private final Magazine magazine;
+    @Column(name = "MAGAZINE", updatable = false, nullable = false)
+    private Magazine magazine;
 
-    @Column(name = "NUMBER_OF_COPIES")
-    private final String numberOfCopies;
+    @Column(name = "NUMBER_OF_COPIES", nullable = false)
+    private String numberOfCopies = "1";
 
-    @Column(name = "EDITION_ID")
-    private final Long editionId;
+    @Column(name = "EDITION_ID", updatable = false, nullable = false)
+    private Long editionId;
 
-    @Column(name = "PUBLISHED_IND")
-    private final boolean isPublished;
+    @Column(name = "PUBLISHED_IND", nullable = false)
+    private boolean isPublished = false;
 
-    protected Subscription() {
-        this.subscriptionNumber = null;
-        this.startDate = null;
-        this.endDate = null;
-        this.sendPhysical = false;
-        this.sendDigital = false;
-        this.validationErrorId = null;
-        this.magazine = null;
-        this.numberOfCopies = null;
-        this.editionId = null;
-        this.isPublished = false;
-    }
 }

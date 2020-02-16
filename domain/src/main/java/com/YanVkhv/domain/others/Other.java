@@ -1,29 +1,32 @@
 package com.YanVkhv.domain.others;
 
-import com.YanVkhv.domain.BaseEntity;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Getter
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "OTHER")
-public class Other extends BaseEntity {
+public class Other {
 
-    @Column(name = "SUBSCRIPTION_ID")
-    private final Long subscriptionId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
+
+    @Column(name = "SUBSCRIPTION_ID", nullable = false)
+    private Long subscriptionId;
 
     @Column(name = "FIRSTNAME")
-    private final String firstname;
+    private String firstname = null;
 
-    @Column(name = "LASTNAME")
-    private final String lastname;
+    @Column(name = "NAME", nullable = false)
+    private String name;
 
-    protected Other() {
-        this.subscriptionId = null;
-        this.firstname = null;
-        this.lastname = null;
-    }
 }

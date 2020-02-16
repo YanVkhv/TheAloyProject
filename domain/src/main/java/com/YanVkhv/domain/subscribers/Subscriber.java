@@ -1,62 +1,59 @@
 package com.YanVkhv.domain.subscribers;
 
-import com.YanVkhv.domain.BaseEntity;
 import com.YanVkhv.domain.genders.Gender;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Getter
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "SUBSCRIBER")
-public class Subscriber extends BaseEntity {
+public class Subscriber {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
     @Column(name = "SUBSCRIPTION_ID")
-    private final Long subscriptionId;
+    private Long subscriptionId;
 
-    @Column(name = "FIRSTNAME")
-    private final String firstname;
+    @Column(name = "FIRSTNAME", nullable = false)
+    private String firstname;
 
-    @Column(name = "LASTNAME")
-    private final String lastname;
+    @Column(name = "LASTNAME", nullable = false)
+    private String lastname;
 
-    @Column(name = "BIRTHDATE")
-    private final LocalDate birthdate;
+    @Column(name = "BIRTHDATE", nullable = false)
+    private LocalDate birthdate;
 
     @Column(name = "DEATHDATE")
-    private final LocalDate deathdate;
+    private LocalDate deathdate = null;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "GENDER")
-    private final Gender gender;
+    @Column(name = "GENDER", nullable = false)
+    private Gender gender;
 
-    @Column(name = "NATIONAL_REGISTER_NUMBER")
-    private final String nationalRegisterNumber;
+    @Column(name = "NATIONAL_REGISTER_NUMBER", nullable = false)
+    private String nationalRegisterNumber;
 
     @Column(name = "CM_MEMBER_IND")
-    private final boolean isCmMember;
+    private boolean isCmMember = false;
 
     @Column(name = "M_NUMBER")
-    private final String mNumber;
+    private String mNumber = null;
 
     @Column(name = "ACV_MEMBER_IND")
-    private final boolean isAcvMember;
+    private boolean isAcvMember = false;
 
     @Column(name = "ACV_UUID")
-    private final String acvUuid;
+    private String acvUuid = null;
 
-    protected Subscriber() {
-        this.subscriptionId = null;
-        this.firstname = null;
-        this.lastname = null;
-        this.birthdate = null;
-        this.deathdate = null;
-        this.gender = null;
-        this.nationalRegisterNumber = null;
-        this.isCmMember = false;
-        this.mNumber = null;
-        this.isAcvMember = false;
-        this.acvUuid = null;
-    }
 }

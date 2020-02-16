@@ -1,49 +1,48 @@
 package com.YanVkhv.domain.addresses;
 
-import com.YanVkhv.domain.BaseEntity;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "ADDRESS")
-public class Address extends BaseEntity {
+public class Address {
 
-    @Column(name = "SUBSCRIBER_ID")
-    private final Long subscriberId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
-    @Column(name = "STREET")
-    private final String street;
+    @Column(name = "SUBSCRIBER_ID", nullable = false)
+    private Long subscriberId;
 
-    @Column(name = "HOUSE_NUMBER")
-    private final String houseNumber;
+    @Column(name = "STREET", nullable = false)
+    private String street;
+
+    @Column(name = "HOUSE_NUMBER", nullable = false)
+    private String houseNumber;
 
     @Column(name = "HOUSE_INDEX")
-    private final String houseIndex;
+    private String houseIndex = null;
 
     @Column(name = "HOUSE_BOX")
-    private final String houseBox;
+    private String houseBox = null;
 
-    @Column(name = "POSTAL_CODE")
-    private final String postalCode;
+    @Column(name = "POSTAL_CODE", nullable = false)
+    private String postalCode;
 
-    @Column(name = "LOCALITY")
-    private final String locality;
+    @Column(name = "LOCALITY", nullable = false)
+    private String locality;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "ADDRESS_TYPE")
-    private final AddressType addressType;
-
-    protected Address() {
-        subscriberId = null;
-        street = null;
-        houseNumber = null;
-        houseIndex = null;
-        houseBox = null;
-        postalCode = null;
-        locality = null;
-        addressType = null;
-    }
+    @Column(name = "ADDRESS_TYPE", nullable = false)
+    private AddressType addressType;
 
 }
