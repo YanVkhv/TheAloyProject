@@ -40,7 +40,6 @@ public class SubscriberControllerIntegrationTest extends ControllerIntegrationTe
         Subscriber alreadyExistingSubscriber = subscriberRepository.save(createASubscriber());
         Subscriber subscriberToUpdate = Subscriber.builder()
                 .id(alreadyExistingSubscriber.getId())
-                .addressId((long) 1)
                 .firstname("Yan")
                 .lastname("Vkhv")
                 .birthdate(LocalDate.of(1990, 3, 20))
@@ -109,7 +108,6 @@ public class SubscriberControllerIntegrationTest extends ControllerIntegrationTe
 
     private Subscriber createASubscriber() {
         return Subscriber.builder()
-                .addressId((long) 1)
                 .firstname("Yannick")
                 .lastname("Vankerkhove")
                 .birthdate(LocalDate.of(1990, 3, 20))

@@ -38,7 +38,6 @@ public class SubscriberRepositoryIntegrationTest extends IntegrationTest {
     void getAll() {
         Subscriber subscriberOne = repository.save(createASubscriber());
         Subscriber subscriberTwo = repository.save(Subscriber.builder()
-                .addressId((long) 2)
                 .firstname("Sarah")
                 .lastname("Hsieh")
                 .birthdate(LocalDate.of(1992, 10, 1))
@@ -54,7 +53,6 @@ public class SubscriberRepositoryIntegrationTest extends IntegrationTest {
 
     private Subscriber createASubscriber() {
         return Subscriber.builder()
-                .addressId((long) 1)
                 .firstname("Yannick")
                 .lastname("Vankerkhove")
                 .birthdate(LocalDate.of(1990, 3, 20))

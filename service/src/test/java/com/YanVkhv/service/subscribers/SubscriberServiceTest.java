@@ -23,7 +23,6 @@ public class SubscriberServiceTest {
     @Test
     void createSubscriber_happyPath() {
         Subscriber subscriber = Subscriber.builder()
-                .addressId((long) 1)
                 .firstname("Yannick")
                 .lastname("Vankerkhove")
                 .birthdate(LocalDate.of(1990, 3, 20))
