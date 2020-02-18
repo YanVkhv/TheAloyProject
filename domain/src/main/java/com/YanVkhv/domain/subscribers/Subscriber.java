@@ -1,13 +1,14 @@
 package com.YanVkhv.domain.subscribers;
 
+import com.YanVkhv.domain.addresses.Address;
 import com.YanVkhv.domain.genders.Gender;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.YanVkhv.domain.subscriptions.Subscription;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Data
@@ -22,11 +23,13 @@ public class Subscriber {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "SUBSCRIPTION_ID")
-    private Long subscriptionId;
+    @ManyToOne
+    @JoinColumn(name = "ADDRESS_ID", nullable = false)
+    private Address address;
 
-    @Column(name = "ADDRESS_ID", nullable = false)
-    private Long addressId;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "subscriber", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<Subscription> subscriptions = new ArrayList<>();
 
     @Column(name = "FIRSTNAME", nullable = false)
     private String firstname;

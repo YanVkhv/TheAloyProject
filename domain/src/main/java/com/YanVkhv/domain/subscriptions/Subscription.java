@@ -1,17 +1,17 @@
 package com.YanVkhv.domain.subscriptions;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.YanVkhv.domain.subscribers.Subscriber;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Data
+@Builder
+@EqualsAndHashCode
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "SUBSCRIPTION")
 public class Subscription {
@@ -20,6 +20,10 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SUBSCRIBER_ID", nullable = false)
+    private Subscriber subscriber;
 
     @Column(name = "SUBSCRIPTION_NUMBER", updatable = false, nullable = false)
     private String subscriptionNumber;
@@ -52,4 +56,8 @@ public class Subscription {
     @Column(name = "PUBLISHED_IND", nullable = false)
     private boolean isPublished = false;
 
+    @Override
+    public String toString() {
+        return String.format("%s: %s", magazine.getLabel(), subscriptionNumber);
+    }
 }

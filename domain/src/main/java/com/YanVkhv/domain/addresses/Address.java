@@ -1,14 +1,16 @@
 package com.YanVkhv.domain.addresses;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.YanVkhv.domain.subscribers.Subscriber;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
-@Data
+@EqualsAndHashCode
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -27,10 +29,10 @@ public class Address {
     private String houseNumber;
 
     @Column(name = "HOUSE_INDEX")
-    private String houseIndex = null;
+    private String houseIndex = "";
 
     @Column(name = "HOUSE_BOX")
-    private String houseBox = null;
+    private String houseBox = "";
 
     @Column(name = "POSTAL_CODE", nullable = false)
     private String postalCode;
@@ -38,8 +40,12 @@ public class Address {
     @Column(name = "LOCALITY", nullable = false)
     private String locality;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "ADDRESS_TYPE", nullable = false)
-    private AddressType addressType;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "address", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<Subscriber> subscribers = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return String.format("%s %s %s %s, %s %s", street, houseNumber, houseIndex, houseBox, postalCode, locality);
+    }
 }

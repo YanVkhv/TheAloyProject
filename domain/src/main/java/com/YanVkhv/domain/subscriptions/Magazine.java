@@ -6,7 +6,9 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Magazine {
-    VISIE,
-    LEEF,
-    EN_MARCHE
+    VISIE("Visie"),
+    LEEF("Leef"),
+    EN_MARCHE("En Marche");
+
+    private final String label;
 }

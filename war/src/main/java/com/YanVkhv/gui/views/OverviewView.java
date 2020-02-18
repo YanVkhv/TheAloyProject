@@ -33,6 +33,7 @@ public class OverviewView extends Div implements AfterNavigationObserver {
 
     private TextField firstname = new TextField();
     private TextField lastname = new TextField();
+    private FormLayout addressForm = new FormLayout();
     private PasswordField password = new PasswordField();
 
     private Button cancel = new Button("Cancel");
@@ -46,9 +47,12 @@ public class OverviewView extends Div implements AfterNavigationObserver {
         subscribers = new Grid<>();
         subscribers.addThemeVariants(GridVariant.LUMO_NO_BORDER);
         subscribers.setHeightFull();
-        subscribers.addColumn(Subscriber::getFirstname).setHeader("First name");
-        subscribers.addColumn(Subscriber::getLastname).setHeader("Last name");
-        subscribers.addColumn(Subscriber::getBirthdate).setHeader("Birthdate");
+        subscribers.addColumn(Subscriber::getFirstname).setHeader("First name").setResizable(true).setAutoWidth(true);
+        subscribers.addColumn(Subscriber::getLastname).setHeader("Last name").setResizable(true).setAutoWidth(true);
+        subscribers.addColumn(Subscriber::getBirthdate).setHeader("Birthdate").setResizable(true).setAutoWidth(true);
+        subscribers.addColumn(Subscriber::getNationalRegisterNumber).setHeader("NRN").setResizable(true).setAutoWidth(true);
+        subscribers.addColumn(Subscriber::getAddress).setHeader("Address").setResizable(true).setAutoWidth(true);
+        subscribers.addColumn(Subscriber::getSubscriptions).setHeader("Subscriptions").setResizable(true).setAutoWidth(true);
 
         //when a row is selected or deselected, populate form
         subscribers.asSingleSelect().addValueChangeListener(event -> populateForm(event.getValue()));
@@ -81,7 +85,7 @@ public class OverviewView extends Div implements AfterNavigationObserver {
         FormLayout formLayout = new FormLayout();
         addFormItem(editorDiv, formLayout, firstname, "First name");
         addFormItem(editorDiv, formLayout, lastname, "Last name");
-        addFormItem(editorDiv, formLayout, password, "Password");
+        formLayout.add(addressForm);
         createButtonLayout(editorDiv);
         splitLayout.addToSecondary(editorDiv);
     }
