@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <javax.inject.version>1</javax.inject.version>
         <springfox.swagger.version>2.9.2</springfox.swagger.version>
-        <postgresql.version>42.2.8</postgresql.version>
+        <postgresql.version>42.3.3</postgresql.version>
         <lombok.version>1.18.10</lombok.version>
         <vaadin.version>14.1.17</vaadin.version>
     </properties>
